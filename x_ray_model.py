@@ -49,15 +49,7 @@ def loadData():
 trainX, trainY, testX, testY = loadData()
 
 print (trainX.shape, trainY.shape, testX.shape, testY.shape)
-plt.figure(figsize=(10, 10))
-for i in range(15):
-    plt.subplot(5, 5, i + 1)
-    plt.xticks([])
-    plt.yticks([])
-    plt.grid(False)
-    plt.imshow(testX[i], cmap='gray')
-    plt.xlabel(testY[i], {'size':10})
-plt.show()
+
 # # Evaluate
 model = tf.keras.Sequential([
     layers.experimental.preprocessing.RandomFlip("horizontal", input_shape=(IMG_DIM, IMG_DIM,1)),
@@ -94,6 +86,20 @@ model.evaluate(testX, testY, batch_size=BATCH_SIZE)
 #     .format(["not infected with Covid-19", "Infected with Covid-19"][np.argmax(score)], 100 * np.max(score))
 # )
 
+predictions = model.predict(testX)
+predictions = tf.nn.softmax(predictions)
+a = plt.figure(figsize=(10, 10))
+for i in range(testX.shape[0]):
+  plt.subplot(5, 5, i + 1)
+  plt.xticks([])
+  plt.yticks([])
+  plt.grid(False)
+  plt.imshow(testX[i], cmap='gray')
+  plt.xlabel(str(testY[i]) + "\n " + "Predicted: " + str(np.round(predictions[i], 2)), {'size':10})
+
+a.tight_layout(pad=3.0)
+plt.show()
+
 acc = history.history['accuracy']
 # val_acc = history.history['val_accuracy']
 
@@ -102,7 +108,8 @@ loss = history.history['loss']
 
 epochs_range = range(EPOCHS)
 
-plt.figure(figsize=(8, 8))
+a = plt.figure(figsize=(8, 8))
+a.tight_layout(pad=3.0)
 plt.subplot(1, 2, 1)
 plt.plot(epochs_range, acc, label='Training Accuracy')
 # plt.plot(epochs_range, val_acc, label='Validation Accuracy')
