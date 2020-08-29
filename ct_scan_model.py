@@ -13,15 +13,13 @@ from skimage.transform import resize
 import random
 
 #Directories
-CT_COVID_DATA = "./data/"
-POSITIVE_COVID = "CT_COVID"
-NEGATIVE_COVID = "CT_NonCOVID"
+CT_COVID_DATA = "./data/CT"
 
 #Constants
 BATCH_SIZE = 24
-IMG_DIM = 200
-EPOCHS = 10
-LEARNING_RATE = 0.001
+IMG_DIM = 224
+EPOCHS = 15
+LEARNING_RATE = 0.00003
 
 def loadImage(path):
     image = io.imread(path, as_gray=True)
@@ -44,7 +42,7 @@ def loadData():
   lb = LabelBinarizer()
   labels = lb.fit_transform(labels)
   labels = to_categorical(labels)
-  (trainX, testX, trainY, testY) = train_test_split(images, labels, test_size=0.20, stratify=labels, random_state=random.randint(0,100))
+  (trainX, testX, trainY, testY) = train_test_split(images, labels, test_size=0.10, stratify=labels, random_state=random.randint(0,100))
   return trainX, trainY, testX, testY
 
 trainX, trainY, testX, testY = loadData()
@@ -53,9 +51,9 @@ print (trainX.shape, trainY.shape, testX.shape, testY.shape)
 # # Evaluate
 model = tf.keras.Sequential([
     layers.experimental.preprocessing.RandomFlip("horizontal", input_shape=(IMG_DIM, IMG_DIM,1)),
-    layers.experimental.preprocessing.RandomZoom(0.1),
+    layers.experimental.preprocessing.RandomZoom(0.2, 0.2),
     layers.Conv2D(32, 3, activation='relu'),
-    layers.MaxPooling2D(),
+    layers.AveragePooling2D(),
     layers.Conv2D(64, 3, activation='relu'),
     layers.MaxPooling2D(),
     layers.Conv2D(128, 3, activation='relu'),
@@ -64,47 +62,46 @@ model = tf.keras.Sequential([
     layers.Flatten(),
     # layers.Dense(256, activation='relu'),
     layers.Dense(128, activation='relu'),
-    layers.Dense(16, activation='sigmoid'),
-    # layers.Dense(32, activation='relu'),
+    layers.Dense(32, activation='relu'),
+    layers.Dense(16, activation='relu'),
     layers.Dense(2)
 ])
-opt = tf.keras.optimizers.Adam()
+opt = tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE)
 model.compile(
   optimizer=opt,
   loss=tf.losses.CategoricalCrossentropy(from_logits=True),
   metrics=['accuracy'])
 
-print (trainX, trainY)
 history = model.fit(
   trainX,
   trainY,
   epochs=EPOCHS,
   batch_size=BATCH_SIZE
 )
-model.evaluate(testX, testY, batch_size=16)
+model.evaluate(testX, testY, batch_size=BATCH_SIZE)
 # print(
 #     "This image is most likely {} with a {:.2f} percent confidence."
 #     .format(["not infected with Covid-19", "Infected with Covid-19"][np.argmax(score)], 100 * np.max(score))
 # )
 
-# acc = history.history['accuracy']
+acc = history.history['accuracy']
 # val_acc = history.history['val_accuracy']
 
-# loss = history.history['loss']
+loss = history.history['loss']
 # val_loss = history.history['val_loss']
 
-# epochs_range = range(epochs)
+epochs_range = range(EPOCHS)
 
-# plt.figure(figsize=(8, 8))
-# plt.subplot(1, 2, 1)
-# plt.plot(epochs_range, acc, label='Training Accuracy')
+plt.figure(figsize=(8, 8))
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Training Accuracy')
 # plt.plot(epochs_range, val_acc, label='Validation Accuracy')
-# plt.legend(loc='lower right')
-# plt.title('Training and Validation Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training and Validation Accuracy')
 
-# plt.subplot(1, 2, 2)
-# plt.plot(epochs_range, loss, label='Training Loss')
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Training Loss')
 # plt.plot(epochs_range, val_loss, label='Validation Loss')
-# plt.legend(loc='upper right')
-# plt.title('Training and Validation Loss')
-# plt.show()
+plt.legend(loc='upper right')
+plt.title('Training and Validation Loss')
+plt.show()
