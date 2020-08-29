@@ -46,6 +46,6 @@ While 100% accuracy seems unrealistic, the model was predicting the correct valu
 While the CT scan dataset offers a lot more data, the Chest X Ray dataset consistently provided good results, despite the quantity of data.
 
 ### Datasets Obtained From
-https://github.com/UCSD-AI4H/COVID-CT
-https://github.com/ieee8023/covid-chestxray-dataset
-https://www.kaggle.com/bachrr/covid-chest-xray?select=images
+- https://github.com/UCSD-AI4H/COVID-CT
+- https://github.com/ieee8023/covid-chestxray-dataset
+- https://www.kaggle.com/bachrr/covid-chest-xray?select=images
