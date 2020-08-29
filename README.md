@@ -41,7 +41,7 @@ While 100% accuracy seems unrealistic, the model was predicting the correct valu
 <img width="808" alt="Screen Shot 2020-08-29 at 3 30 11 PM" src="https://user-images.githubusercontent.com/37857112/91644696-92b40580-ea0c-11ea-99fe-fdb01acd6ead.png">
 
 ## Summary
-While the CT scan dataset offers a lot more data, the Chest X Ray dataset consistently provided good results, despite the quantity of data.
+While the CT scan dataset offers a lot more data, the Chest X Ray dataset consistently provided good results, despite the quantity of data. This works on this dataset, however, this should not be used as a Diagnostic tool, and simply serves as a proof of concept. One of the reasons behind this is the limited dataset available of lung X-Rays; a better, diverse data set would offer more generality.
 
 ### Datasets Obtained From
 - https://github.com/UCSD-AI4H/COVID-CT
