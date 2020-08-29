@@ -27,7 +27,7 @@ Trained a CNN to recognize Covid-19 in Lung X-Rays. The dataset was much higher 
 <img width="731" alt="Screen Shot 2020-08-29 at 2 56 30 PM" src="https://user-images.githubusercontent.com/37857112/91644187-d3f5e680-ea07-11ea-999c-a80e717aa7b6.png">
 
 #### Even 100% on Convergence
-(For the 10 datasets used as evaluation)
+(For the 15 datasets used as evaluation)
 
 <img width="642" alt="Screen Shot 2020-08-29 at 3 29 28 PM" src="https://user-images.githubusercontent.com/37857112/91644693-8fb91500-ea0c-11ea-9e3a-91da974e0dd0.png">
 
@@ -38,14 +38,13 @@ Trained a CNN to recognize Covid-19 in Lung X-Rays. The dataset was much higher 
 While 100% accuracy seems unrealistic, the model was predicting the correct value for 15 consecutive test data (0.0003%) chance of happening, (especially multiple times in a row). 
 
 #### Images that it predicted correctly
-<img width="808" alt="Screen Shot 2020-08-29 at 3 30 11 PM" src="https://user-images.githubusercontent.com/37857112/91644696-92b40580-ea0c-11ea-99fe-fdb01acd6ead.png">
 
-
+<img width="935" alt="Screen Shot 2020-08-29 at 4 36 56 PM" src="https://user-images.githubusercontent.com/37857112/91645752-f55dcf00-ea15-11ea-84d8-fa22d73064d4.png">
 
 ## Summary
-While the CT scan dataset offers a lot more data, the Chest X Ray dataset consistently provided good results, despite the quantity of data.
+While the CT scan dataset offers a lot more data, the Chest X Ray dataset consistently provided good results, despite the quantity of data. This works on this dataset, however, this should not be used as a Diagnostic tool, and simply serves as a proof of concept. One of the reasons behind this is the limited dataset available of lung X-Rays; a better, diverse data set would offer more generality.
 
 ### Datasets Obtained From
-https://github.com/UCSD-AI4H/COVID-CT
-https://github.com/ieee8023/covid-chestxray-dataset
-https://www.kaggle.com/bachrr/covid-chest-xray?select=images
+- https://github.com/UCSD-AI4H/COVID-CT
+- https://github.com/ieee8023/covid-chestxray-dataset
+- https://www.kaggle.com/bachrr/covid-chest-xray?select=images
