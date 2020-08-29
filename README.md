@@ -38,7 +38,8 @@ Trained a CNN to recognize Covid-19 in Lung X-Rays. The dataset was much higher 
 While 100% accuracy seems unrealistic, the model was predicting the correct value for 15 consecutive test data (0.0003%) chance of happening, (especially multiple times in a row). 
 
 #### Images that it predicted correctly
-<img width="808" alt="Screen Shot 2020-08-29 at 3 30 11 PM" src="https://user-images.githubusercontent.com/37857112/91644696-92b40580-ea0c-11ea-99fe-fdb01acd6ead.png">
+
+<img width="935" alt="Screen Shot 2020-08-29 at 4 36 56 PM" src="https://user-images.githubusercontent.com/37857112/91645752-f55dcf00-ea15-11ea-84d8-fa22d73064d4.png">
 
 ## Summary
 While the CT scan dataset offers a lot more data, the Chest X Ray dataset consistently provided good results, despite the quantity of data. This works on this dataset, however, this should not be used as a Diagnostic tool, and simply serves as a proof of concept. One of the reasons behind this is the limited dataset available of lung X-Rays; a better, diverse data set would offer more generality.
