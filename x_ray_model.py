@@ -16,10 +16,10 @@ import random
 CT_COVID_DATA = "./data/XRAY"
 
 #Constants
-BATCH_SIZE = 12
+BATCH_SIZE = 6
 IMG_DIM = 224
 EPOCHS = 15
-LEARNING_RATE = 0.00003
+LEARNING_RATE = 0.0001
 
 def loadImage(path):
     image = io.imread(path, as_gray=True)
@@ -43,12 +43,21 @@ def loadData():
   lb = LabelBinarizer()
   labels = lb.fit_transform(labels)
   labels = to_categorical(labels)
-  (trainX, testX, trainY, testY) = train_test_split(images, labels, test_size=0.20, stratify=labels, random_state=random.randint(0,100))
+  (trainX, testX, trainY, testY) = train_test_split(images, labels, test_size=0.3, stratify=labels, random_state=random.randint(0,100))
   return trainX, trainY, testX, testY
 
 trainX, trainY, testX, testY = loadData()
-print (trainX.shape, trainY.shape, testX.shape, testY.shape)
 
+print (trainX.shape, trainY.shape, testX.shape, testY.shape)
+plt.figure(figsize=(10, 10))
+for i in range(15):
+    plt.subplot(5, 5, i + 1)
+    plt.xticks([])
+    plt.yticks([])
+    plt.grid(False)
+    plt.imshow(testX[i], cmap='gray')
+    plt.xlabel(testY[i], {'size':10})
+plt.show()
 # # Evaluate
 model = tf.keras.Sequential([
     layers.experimental.preprocessing.RandomFlip("horizontal", input_shape=(IMG_DIM, IMG_DIM,1)),
@@ -59,11 +68,11 @@ model = tf.keras.Sequential([
     layers.MaxPooling2D(),
     layers.Conv2D(64, 3, activation='relu'),
     layers.MaxPooling2D(),
-    layers.Dropout(0.3),
+    layers.Dropout(0.4),
     layers.Flatten(),
     # layers.Dense(256, activation='relu'),
     layers.Dense(128, activation='relu'),
-    layers.Dense(32, activation='relu'),
+    # layers.Dense(32, activation='relu'),
     layers.Dense(16, activation='relu'),
     layers.Dense(2)
 ])

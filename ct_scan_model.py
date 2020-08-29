@@ -18,7 +18,7 @@ CT_COVID_DATA = "./data/CT"
 #Constants
 BATCH_SIZE = 24
 IMG_DIM = 224
-EPOCHS = 15
+EPOCHS = 20
 LEARNING_RATE = 0.00003
 
 def loadImage(path):
