@@ -26,20 +26,21 @@ Trained a CNN to recognize Covid-19 in Lung X-Rays. The dataset was much higher 
 
 <img width="731" alt="Screen Shot 2020-08-29 at 2 56 30 PM" src="https://user-images.githubusercontent.com/37857112/91644187-d3f5e680-ea07-11ea-999c-a80e717aa7b6.png">
 
-#### Even 100% on Convergence
+#### Close to 93%-97% accuracy
 (For the 15 datasets used as evaluation)
 
-<img width="642" alt="Screen Shot 2020-08-29 at 3 29 28 PM" src="https://user-images.githubusercontent.com/37857112/91644693-8fb91500-ea0c-11ea-9e3a-91da974e0dd0.png">
+<img width="618" alt="Screen Shot 2020-08-30 at 1 13 09 PM" src="https://user-images.githubusercontent.com/37857112/91665316-b043a680-eac2-11ea-8e5f-81d271e4f15c.png">
 
 (Last line is the test results)
 
-<img width="705" alt="Screen Shot 2020-08-29 at 3 29 47 PM" src="https://user-images.githubusercontent.com/37857112/91644695-921b6f00-ea0c-11ea-87bb-1c2a38edfa7c.png">
+
+<img width="711" alt="Screen Shot 2020-08-30 at 1 15 20 PM" src="https://user-images.githubusercontent.com/37857112/91665338-dcf7be00-eac2-11ea-8fda-8a891e00dd3f.png">
 
 While 100% accuracy seems unrealistic, the model was predicting the correct value for 15 consecutive test data (0.0003%) chance of happening, (especially multiple times in a row). 
 
-#### Images that it predicted correctly
+#### Sample Test Accuracy
 
-<img width="935" alt="Screen Shot 2020-08-29 at 4 36 56 PM" src="https://user-images.githubusercontent.com/37857112/91645752-f55dcf00-ea15-11ea-84d8-fa22d73064d4.png">
+<img width="936" alt="Screen Shot 2020-08-30 at 1 13 18 PM" src="https://user-images.githubusercontent.com/37857112/91665318-b33e9700-eac2-11ea-9720-687218b6f1a1.png">
 
 ## Summary
 While the CT scan dataset offers a lot more data, the Chest X Ray dataset consistently provided good results, despite the quantity of data. This works on this dataset, however, this should not be used as a Diagnostic tool, and simply serves as a proof of concept. One of the reasons behind this is the limited dataset available of lung X-Rays; a better, diverse data set would offer more generality.
