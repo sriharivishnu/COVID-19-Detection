@@ -36,8 +36,6 @@ Trained a CNN to recognize Covid-19 in Lung X-Rays. The dataset was much higher 
 
 <img width="711" alt="Screen Shot 2020-08-30 at 1 15 20 PM" src="https://user-images.githubusercontent.com/37857112/91665338-dcf7be00-eac2-11ea-8fda-8a891e00dd3f.png">
 
-While 100% accuracy seems unrealistic, the model was predicting the correct value for 15 consecutive test data (0.0003%) chance of happening, (especially multiple times in a row). 
-
 #### Sample Test Accuracy
 
 <img width="936" alt="Screen Shot 2020-08-30 at 1 13 18 PM" src="https://user-images.githubusercontent.com/37857112/91665318-b33e9700-eac2-11ea-9720-687218b6f1a1.png">
