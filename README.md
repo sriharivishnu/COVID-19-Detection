@@ -27,7 +27,7 @@ Trained a CNN to recognize Covid-19 in Lung X-Rays. The dataset was much higher 
 <img width="731" alt="Screen Shot 2020-08-29 at 2 56 30 PM" src="https://user-images.githubusercontent.com/37857112/91644187-d3f5e680-ea07-11ea-999c-a80e717aa7b6.png">
 
 #### Close to 93%-97% accuracy
-(For the 15 datasets used as evaluation)
+(On the 15 test images used as evaluation)
 
 <img width="618" alt="Screen Shot 2020-08-30 at 1 13 09 PM" src="https://user-images.githubusercontent.com/37857112/91665316-b043a680-eac2-11ea-8e5f-81d271e4f15c.png">
 
