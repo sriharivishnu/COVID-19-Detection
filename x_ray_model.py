@@ -64,7 +64,7 @@ model = tf.keras.Sequential([
     layers.Flatten(),
     # layers.Dense(256, activation='relu'),
     layers.Dense(128, activation='relu'),
-    # layers.Dense(32, activation='relu'),
+    layers.Dense(32, activation='relu'),
     layers.Dense(16, activation='relu'),
     layers.Dense(2)
 ])
