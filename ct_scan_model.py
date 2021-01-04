@@ -1,3 +1,7 @@
+"""
+Covid-19 Identifier: Uses CT Scan images to identify
+Covid-19 in patients.
+"""
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras import layers
@@ -20,12 +24,23 @@ BATCH_SIZE = 24
 IMG_DIM = 224
 EPOCHS = 20
 LEARNING_RATE = 0.00003
-
+"""
+@param path : String (path to file)
+@return resized grayscale image
+Function that reads an image and converts it to gray scale and resizes
+it to the specified IMG_DIM dimensions.
+"""
 def loadImage(path):
     image = io.imread(path, as_gray=True)
     image = resize(image, (IMG_DIM, IMG_DIM, 1))
     return image
 
+"""
+Loads the training and test data
+@return trainX, trainY, testX, testY
+Returs the training data followed by the testData. X is the images, and Y are the labels.
+The labels give the information on Covid-19 positive of negative for a given image.
+"""
 def loadData():
   #LoadData
   data_dir = pathlib.Path(CT_COVID_DATA)
@@ -48,7 +63,7 @@ def loadData():
 trainX, trainY, testX, testY = loadData()
 print (trainX.shape, trainY.shape, testX.shape, testY.shape)
 
-# # Evaluate
+# Builds the model for analysis
 model = tf.keras.Sequential([
     layers.experimental.preprocessing.RandomFlip("horizontal", input_shape=(IMG_DIM, IMG_DIM,1)),
     layers.experimental.preprocessing.RandomZoom(0.2, 0.2),
@@ -67,22 +82,23 @@ model = tf.keras.Sequential([
     layers.Dense(2)
 ])
 opt = tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE)
+
+#Compile the model with the optimizer and loss function
 model.compile(
   optimizer=opt,
   loss=tf.losses.CategoricalCrossentropy(from_logits=True),
   metrics=['accuracy'])
 
+# Train model with the training data
 history = model.fit(
   trainX,
   trainY,
   epochs=EPOCHS,
   batch_size=BATCH_SIZE
 )
+
+# Evaluate the model with the test data
 model.evaluate(testX, testY, batch_size=BATCH_SIZE)
-# print(
-#     "This image is most likely {} with a {:.2f} percent confidence."
-#     .format(["not infected with Covid-19", "Infected with Covid-19"][np.argmax(score)], 100 * np.max(score))
-# )
 
 acc = history.history['accuracy']
 # val_acc = history.history['val_accuracy']
@@ -92,6 +108,9 @@ loss = history.history['loss']
 
 epochs_range = range(EPOCHS)
 
+"""
+Plot the results
+"""
 plt.figure(figsize=(8, 8))
 plt.subplot(1, 2, 1)
 plt.plot(epochs_range, acc, label='Training Accuracy')
