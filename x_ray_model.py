@@ -40,7 +40,7 @@ def loadImage(path):
 """
 Loads the training and test data
 @return trainX, trainY, testX, testY
-Returs the training data followed by the testData. X is the images, and Y are the labels.
+Returns the training data followed by the testData. X is the images, and Y are the labels.
 The labels give the information on Covid-19 positive of negative for a given image.
 """
 
